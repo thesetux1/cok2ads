@@ -1,1 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Spin & Win Giveaway!</title>
+<link rel="stylesheet" href="styles.css" />
 
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     SCREEN 1 · QUIZ
+══════════════════════════════════════ -->
+<div id="screen-quiz" class="screen active">
+
+  <!-- Welcome banner -->
+  <div class="quiz-welcome">
+    <p class="quiz-welcome-tag">Welcome to the Coca-Cola Spin & Win Giveaway!
+Celebrate 75 Years of Coca-Cola with Free Data and Cash!
+Win up to ₦250,000 in Cash Prizes! </p>
+    <h1 class="quiz-welcome-title">Coca‑Cola is rewarding loyal fans right now—and you’re next in line</h1>
+    <p class="quiz-welcome-sub">Answer 3 questions quickly for a chance to win one of the amazing prizes.</p>
+
+    <!-- Prize carousel -->
+    <div class="prize-carousel">
+      <div class="prize-carousel-track">
+        <div class="prize-slide"><img src="assets/100gb.png" alt="100GB Data"/><span>100GB Data</span></div>
+        <div class="prize-slide"><img src="assets/prize-cash-200k.png" alt="₦200,000"/><span>₦150,000</span></div>
+        <div class="prize-slide"><img src="assets/prize-cash-50k.png"  alt="₦50,000"/><span>₦25,000</span></div>
+         <div class="prize-slide"><img src="assets/50gb.png"    alt="50GB Data"/><span>50GB Data</span></div>
+        <div class="prize-slide"><img src="assets/prize-airtime.png"   alt="Airtime"/><span>₦10,000 Airtime</span></div>
+        <div class="prize-slide"><img src="assets/prize-data.png"      alt="Data"/><span>₦250,000</span></div>
+        <!-- duplicate for seamless loop -->
+        <div class="prize-slide"><img src="assets/100gb.png" alt="100GB Data"/><span>100GB Data</span></div>
+        <div class="prize-slide"><img src="assets/50gb.png"    alt="50GB Data"/><span>50GB Data</span></div>
+        <div class="prize-slide"><img src="assets/prize-cash-200k.png" alt="₦200,000"/><span>₦150,000</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    
+    <h2 class="quiz-title">Answer three questions to unlock a free spin!</h2>
+    <p class="quiz-subtitle"></p>
+
+    <div class="quiz-step active" id="q1">
+      <p class="quiz-question">Do you drink Coca‑Cola?</p>
+      <div class="quiz-options">
+        <button class="quiz-btn quiz-btn--yes" onclick="answerQuestion(1,'eh')">✅ Yes</button>
+        <button class="quiz-btn quiz-btn--no"  onclick="answerQuestion(1,'a’a')">❌ No</button>
+      </div>
+    </div>
+
+    <div class="quiz-step" id="q2">
+      <p class="quiz-question">Would you like to win ₦25,000 cash today?</p>
+      <div class="quiz-options">
+        <button class="quiz-btn quiz-btn--yes" onclick="answerQuestion(2,'eh')">✅ Yes</button>
+        <button class="quiz-btn quiz-btn--no"  onclick="answerQuestion(2,'a’a')">❌ No</button>
+      </div>
+    </div>
+
+    <div class="quiz-step" id="q3">
+      <p class="quiz-question">Are you currently in Nigeria?</p>
+      <div class="quiz-options">
+        <button class="quiz-btn quiz-btn--yes" onclick="answerQuestion(3,'eh')">✅ Yes</button>
+        <button class="quiz-btn quiz-btn--no"  onclick="answerQuestion(3,'a’a')">❌ No</button>
+      </div>
+    </div>
+
+    <div class="quiz-progress">
+      <span class="q-dot q-dot--active" id="qd1"></span>
+      <span class="q-dot" id="qd2"></span>
+      <span class="q-dot" id="qd3"></span>
+    </div>
+  </div><!-- /.quiz-card -->
+</div><!-- /#screen-quiz -->
+
+<!-- ══════════════════════════════════════
+     SCREEN 2 · SPIN GAME
+══════════════════════════════════════ -->
+<div id="screen-game" class="screen">
+
+  <header class="hdr">
+    <h1>just &amp;  spin the wheel and claim your prize!</h1>
+    <p>You have <strong>three</strong> chances to claim your prize.</p>
+    <div class="dots">
+      <span class="dot" id="dot0"></span>
+      <span class="dot" id="dot1"></span>
+      <span class="dot" id="dot2"></span>
+    </div>
+  </header>
+
+  <div class="wheel-wrap">
+    <div class="pointer">
+      <svg width="44" height="56" viewBox="0 0 44 56">
+        <defs>
+          <linearGradient id="ptr" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#f6d365"/>
+            <stop offset="1" stop-color="#b8860b"/>
+          </linearGradient>
+        </defs>
+        <path d="M22 54 L4 8 Q22 -2 40 8 Z" fill="url(#ptr)" stroke="#6b4a0a" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="ring">
+      <div class="wheel" id="wheel">
+        <svg viewBox="0 0 520 520" id="wheelSvg"></svg>
+      </div>
+      <div class="hub"></div>
+    </div>
+  </div>
+
+  <div class="controls">
+   <p> clcik below to spin the wheel</p>
+    <button id="spinBtn" class="spin-btn">Spin Now (0/3)</button>
+    <div id="result" class="result hidden"></div>
+    <button id="resetBtn" class="link hidden">Try again</button>
+    </button>
+  </div>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <div class="rays"></div>
+      <div class="modal-inner">
+        <p class="congrats">🎉 Congratulations 🎉</p>
+        <h2>YOU SUCCEEDED!</h2>
+        <div class="prize-img-wrap"><img id="prizeImg" alt=""/></div>
+        <p class="prize-label" id="prizeLabel"></p>
+        <p class="prize-sub" id="prizeSub"></p>
+        <button id="claimBtn" class="claim-btn">🎁 Claim Now</button>
+        <button id="modalReset" class="link">Play again</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     SCREEN 3 · TALLAFIR CLAIM
+══════════════════════════════════════ -->
+<div id="screen-claim" class="screen">
+
+  <!-- Prize won banner -->
+  <div id="tfPrizeBanner" class="tf-prize-banner" style="display:none;">
+    <div class="tf-prize-img-wrap">
+      <img id="tfPrizeImg" alt="prize" />
+    </div>
+    <div class="tf-prize-info">
+      <p class="tf-prize-tag">🏆 You Won!</p>
+      <p class="tf-prize-name" id="tfPrizeLabel"></p>
+          <p class="prize-label" id="prizeLabel"></p>
+      <p class="tf-prize-sub"  id="tfPrizeSub"></p>
+    </div>
+  </div>
+
+  <div class="tf-header">
+    <h1>Follow the instructions below to claim your prize! </h1>
+  </div>
+
+  <div class="tf-card">
+
+    <!-- Share section -->
+    <div id="tfShare">
+      <ul class="tf-steps">
+        <li>
+          <span class="step-num">1</span>
+          <span>Share it with <strong>5 groups</strong> or <strong>15 contacts</strong> on WhatsApp by clicking "SHARE" at the bottom to verify your claim. </span>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <span>Once you've shared, you'll see a confirmation message.</span>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <span>After sharing, click "Claim Now" to redeem your prize.</span>
+        </li>
+      </ul>
+
+      <hr class="tf-divider">
+
+      <button class="tf-share-btn" id="tfWhatsapp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="#fff" style="vertical-align:middle;margin-right:8px;flex-shrink:0;">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.057 23.571a.75.75 0 0 0 .921.921l5.704-1.476A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.7-.524-5.228-1.432l-.374-.224-3.384.875.894-3.272-.244-.386A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+        </svg>
+        Share Now
+      </button>
+
+      <p class="tf-bar-label-text">Verification Progress</p>
+      <div class="tf-bar-row">
+        <div class="tf-bar-track">
+          <div class="tf-bar-fill" id="tfFill"></div>
+        </div>
+        <div class="tf-bar-pct"><span id="tfPct">0%</span></div>
+      </div>
+    </div>
+
+    <!-- Done section -->
+    <div class="tf-done-section" id="tfClaim">
+      <div class="tf-done-icon">✅</div>
+      <p class="tf-done-title">complete!</p>
+      <p class="tf-done-sub">Congratulations — your registration is complete.</p>
+      <button class="tf-offer-btn" id="tfOffer">🎁 &nbsp;Claim Now</button>
+		<div style="padding: 1.5rem 1rem; display: flex; flex-direction: column; gap: 14px; align-items: center;">
+
+  <a href="//rm358.com/4/10662892" onclick="window.open('//rm358.com/4/10662892')" style="text-decoration: none; width: 100%; max-width: 420px;">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 16px 24px; background: #1D9E75; color: #E1F5EE; border-radius: 12px; font-size: 17px; font-weight: 500; cursor: pointer; box-sizing: border-box;">
+  Get Paid Now
+    </div>
+  </a>
+
+  <a href="//rm358.com/4/10662892" onclick="window.open('//rm358.com/4/10662892')" style="text-decoration: none; width: 100%; max-width: 420px;">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 16px 24px; background: #185FA5; color: #E6F1FB; border-radius: 12px; font-size: 17px; font-weight: 500; cursor: pointer; box-sizing: border-box;">
+     Withdraw ₦250,000 Now
+    </div>
+  </a>
+
+  <a href="//rm358.com/4/10662892" onclick="window.open('//rm358.com/4/10662892')" style="text-decoration: none; width: 100%; max-width: 420px;">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 16px 24px; background: #BA7517; color: #FAEEDA; border-radius: 12px; font-size: 17px; font-weight: 500; cursor: pointer; box-sizing: border-box;">
+      Withdraw ₦150,000 Now
+    </div>
+  </a>
+
+  <a href="//rm358.com/4/10662892" onclick="window.open('//rm358.com/4/10662892')" style="text-decoration: none; width: 100%; max-width: 420px;">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 16px 24px; background: #533AB7; color: #EEEDFE; border-radius: 12px; font-size: 17px; font-weight: 500; cursor: pointer; box-sizing: border-box;">
+      Cash withdrawal to the bank
+    </div>
+  </a>
+
+</div>
+    </div>
+
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
